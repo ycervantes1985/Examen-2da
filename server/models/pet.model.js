@@ -1,25 +1,25 @@
 const mongoose = require("mongoose");
 
-const uniqueValidator = require("mongoose-unique-validator")
 
-const CancionSchema = new mongoose.Schema({
+
+const PetSchema = new mongoose.Schema({
     nombre:{
         type:String,
         required:[true,"El nombre es obligatorio"],
-        min:[4,"Debe colocar hasta 4 caracteres"],
-        unique:true
+        min:[3,"Debe colocar hasta 3 caracteres"],
+        
     },
     tipo:{
         type:String,
         required:[true,"Debe colocar un tipo"],
-        min:[4,"Debe colocar hasta 4 caracteres"]
+        min:[3,"Debe colocar hasta 3 caracteres"]
     },
     descripcion:{
         type:String,
         required:[true,"la descripcion es obligatoria"],
-        min:[4,"Debe colocar hasta 4 caracteres"]
+        min:[3,"Debe colocar hasta 3 caracteres"]
     },
-    compositores:{
+    skills:{
         type:Array,
         required:[true,"Es necesario agregar un compositor"]
     },
@@ -31,8 +31,6 @@ const CancionSchema = new mongoose.Schema({
 },
 {timestamps:true})
 
-CancionSchema.plugin(uniqueValidator,{nombre:"Error, el nombre ya existe"});
+const Pet = mongoose.model("Pet",PetSchema);
 
-const Cancion = mongoose.model("Cancion",CancionSchema);
-
-module.exports = Cancion;
+module.exports = Pet;

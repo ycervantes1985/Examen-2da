@@ -1,53 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { simpleGet } from '../services/simpleGet'
-import { Link, useNavigate } from "react-router-dom";
+import {useParams,useNavigate,Link} from "react-router-dom"
+import Table from 'react-bootstrap/Table';
+
 
 const Main = () => {
     
-    const [canciones, setCanciones] = useState();
+    const [pets, setPets] = useState();
 
         useEffect(() => {
-        traerCanciones()
+            traerPets()
     }, []);    
 
-    const traerCanciones = async() =>{
-        const response = await simpleGet("http://localhost:8000/api/canciones")
+    const traerPets = async() =>{
+        const response = await simpleGet("http://localhost:8000/api/pets")
         console.log(response)
-        setCanciones(response.data.canciones)
+        setPets(response.data.pets)
     }
 
     return (
-        <div>
-            <Link to={`/crear-cancion/`}>Crear Cancion</Link>
-            <h2>Listado de canciones y autores</h2>
-            <table class="table">
+        <div className='container'>
+            <div className='sub-container-top'>
+                <Link to={`/crear-pet/`}>add a pet to the shelter</Link>
+                <h2>Pet Shelter</h2>                
+            </div>
+            <div className='sub-container-bottom'>
+            <h4>These pets are looking for a good home</h4>         
+            <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Tipo</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Compositores</th>
-                        <th scope="col">Likes</th>
-                        <th scope="col">Acciones</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {canciones?.map((cancion)=>
-                    <tr key= {cancion._id}>
-                        <th scope="row">{cancion.nombre}</th>
-                        <td> {cancion.tipo} </td>
-                        <td> {cancion.descripcion} </td>
-                        <td> {cancion.compositores} </td>
-                        <td> {cancion.likes} </td>
+                    {pets?.map((pet)=>
+                    <tr key= {pet._id}>
+                        <th scope="row">{pet.nombre}</th>
+                        <td> {pet.tipo} </td>
                         <td> 
-                            <Link to={`/cancion/update/${cancion._id}`}>Editar</Link>
+                            <Link to={`/pet/update/${pet._id}`}>edit</Link>
                             |
-                            <Link to={`/cancion/${cancion._id}`}>Detalle</Link>
+                            <Link to={`/pet/${pet._id}`}>details</Link>
                         </td>
                     </tr>
                     )}
                 </tbody>
-            </table>
+            </Table>
+            
+            </div>   
+            
         </div>
     );
 }

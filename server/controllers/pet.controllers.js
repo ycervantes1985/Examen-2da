@@ -1,34 +1,31 @@
-const Cancion = require ("../models/cancion.model")
+const Pet = require ("../models/pet.model")
 
 
 module.exports.findAll = (req,res) => {
-    Cancion.find().sort({"tipo":1})
-        .then((all)=>res.json({canciones:all}))
+    Pet.find().sort({"tipo":1})
+        .then((all)=>res.json({pets:all}))
         .catch((err)=>res.json({message:"Algo salio mal",error:err}))
 }
 
 module.exports.create = (req,res) => {
-    Cancion.create(req.body)
-        .then((newCancion)=>res.json({message:"",cancion:newCancion}))
+    Pet.create(req.body)
+        .then((newPet)=>res.json({message:"",pet:newPet}))
         .catch((err)=>res.json({message:"Algo salio mal",errors:err.errors}))
 }
-
-
-
 module.exports.findOne = (req,res) => {
-    Cancion.findOne({_id: req.params.id})
-        .then((cancion)=>res.json({cancion:cancion}))
+    Pet.findOne({_id: req.params.id})
+        .then((pet)=>res.json({pet:pet}))
         .catch((err)=>res.json({message:"Algo salio mal",error:err}))
 }
 
 module.exports.update = (req,res) => {
-    Cancion.findOneAndUpdate({_id:req.params.id},req.body,{new:true})
-        .then((cancion)=>res.json({cancion:cancion}))
+    Pet.findOneAndUpdate({_id:req.params.id},req.body,{new:true})
+        .then((pet)=>res.json({pet:pet}))
         .catch((err)=>res.json({message:"Algo salio mal",error:err}))
 }
 
 module.exports.delete = (req,res) => {
-    Cancion.findOneAndDelete({_id: req.params.id})
-        .then((cancion)=>res.json({cancion:cancion}))
+    Pet.findOneAndDelete({_id: req.params.id})
+        .then((pet)=>res.json({pet:pet}))
         .catch((err)=>res.json({message:"Algo salio mal",error:err}))
 }

@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  max-width: 600px;
+  max-width: 900px;
   margin: 5px auto;
 }
 
@@ -8,6 +8,151 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+.container{
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 95px;
+
+}
+
+.sub-container-top{
+margin-top: 25px;
+display: flex;
+flex-direction: row-reverse;
+justify-content: space-between;
+}
+
+.sub-container-bottom{
+display: flex;
+flex-direction: column;
+gap: 25px;
+}
+
+.sub-container-bottom h4{
+  align-self: flex-start;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container-form{
+margin: 0 auto;
+display: flex;
+flex-direction: column;
+gap: 95px;
+}
+
+.container-form-top{
+  margin-top: 25px;
+display: flex;
+justify-content: space-between;
+}
+
+.container-form-bottom{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+}
+
+.container-form-bottom h4{
+  align-self: flex-start;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container-form-bottom Form{
+  border: 2px solid black;
+}
+
+.container-fluid{
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.edit-pet-name{
+  position: relative;
+  top: 135px;
+  right: 400px;
+}
+
+.container-fluid button{
+ width: 150px; 
+ background:url('../src/assets/upload.svg') no-repeat left center;
+ background-color: blue;
+ margin-bottom: 10px;
+ color: white;
+ font-size: large;
+ font-weight: bold;
+ box-shadow: 3px 5px 6px 0px black;
+ 
+  
+}
+
+.container-detail{
+display: flex;
+flex-direction: column;
+gap: 45px;
+}
+
+.container-detail-top{
+display: flex;
+justify-content: space-between;
+
+}
+
+.container-detail-medium{
+  display: flex;
+  justify-content: space-between;
+  
+  }
+
+.container-detail-bottom{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  align-items: flex-start;
+  
+    
+}
+
+.container-detail-bottom h4{
+  margin-top: 10px;
+  margin-left: 10px;
+    
+}
+
+.container-detail-medium button{
+  width: 150px; 
+  background:url('../src/assets/house-heart-fill.svg') no-repeat left center;
+  background-color: red;
+  margin-bottom: 10px;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  box-shadow: 3px 5px 6px 0px black;
+
+}
+
+.likes{
+  margin-top: 15px;
+  margin-left: 100px;
+  align-items: center;
+  display: flex;
+  gap: 25px;
+}
+
+.btn-likes{
+  width: 150px; 
+  background:url('../src/assets/descarga.svg') no-repeat left center;
+  background-color: green;
+  margin-bottom: 10px;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  box-shadow: 3px 5px 6px 0px black;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

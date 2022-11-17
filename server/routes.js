@@ -1,11 +1,11 @@
-const CancionController = require("./controllers/cancion.controllers")
+const PetController = require("./controllers/pet.controllers")
 
 
 module.exports = app => {
-    //Cancion
-    app.get("/api/canciones",CancionController.findAll);
-    app.post("/api/cancion/new",CancionController.create);
-    app.get("/api/cancion/:id",CancionController.findOne);
-    app.put("/api/cancion/:id",CancionController.update);
-    app.delete("/api/cancion/:id",CancionController.delete);
+    
+    app.get("/api/pets",PetController.findAll);
+    app.post("/api/pet/new",PetController.create);
+    app.get("/api/pet/:id",PetController.findOne);
+    app.put("/api/pet/:id",PetController.update);
+    app.delete("/api/pet/:id",PetController.delete);
 }

@@ -9,11 +9,12 @@ import Update from './views/Update';
 function App() {
   return (
     <div className="App">
+      
       <Routes>
         <Route path="/" element={<Main/>}/>
-        <Route path="/crear-cancion" element={<CreateC/>}/>
-        <Route path='/cancion/:id' element={<Details/>}/>
-        <Route path='/cancion/update/:id' element={<Update/>}/>
+        <Route path="/crear-pet" element={<CreateC/>}/>
+        <Route path='/pet/:id' element={<Details/>}/>
+        <Route path='/pet/update/:id' element={<Update/>}/>
       </Routes>
       
     </div>

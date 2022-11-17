@@ -4,40 +4,45 @@ import {useParams,useNavigate,Link} from "react-router-dom"
 import { simpleGet } from '../services/simpleGet';
 import { simpleDelete } from '../services/simpleDelete';
 import { simpleUpdate } from '../services/simpleUpdate';
+import Button from 'react-bootstrap/Button';
 
 
 const Details = () => {
 
     const {id} = useParams()
-    const [cancion, setCancion] = useState()
+    const [pet, setPet] = useState()
     const [buttonState, setButtonState] = useState(false);
     const [likes, setLikes] = useState();
     const navigate = useNavigate()
 
-    const getCancion = async() => {
-        const response = await simpleGet("http://localhost:8000/api/cancion/" + id)
-        setCancion(response.data.cancion)
-        console.log(response.data.cancion.likes)
-        setLikes(response.data.cancion.likes)
+    const backToHome = () => {
+        navigate(`/`)
     }
 
-    const eliminarCancion = async() => {
-        const response = await simpleDelete("http://localhost:8000/api/cancion/" + id)
+    const getPet = async() => {
+        const response = await simpleGet("http://localhost:8000/api/pet/" + id)
+        setPet(response.data.pet)
+        console.log(response.data.pet.likes)
+        setLikes(response.data.pet.likes)
+    }
+
+    const eliminarPet = async() => {
+        const response = await simpleDelete("http://localhost:8000/api/pet/" + id)
         navigate("/")
     }
 
     const updateLikes = async()=>{
         let updateLikes = {
-            likes: Number(cancion.likes) + 1
+            likes: Number(pet.likes) + 1
         } 
-        const response = await simpleUpdate(`http://localhost:8000/api/cancion/${id}`,updateLikes)
+        const response = await simpleUpdate(`http://localhost:8000/api/pet/${id}`,updateLikes)
         console.log(response.data)
         setLikes((oldLikes)=>oldLikes + 1)
     }
 
 
     useEffect(() => {
-        getCancion()       
+        getPet()       
     }, []);
 
     const handleClick = () => {
@@ -48,19 +53,31 @@ const Details = () => {
     
 
     return (
-        <div>
-            <h2>Nombre de la cancion : {cancion?.nombre}</h2>
-            <h2>El artista es: {cancion?.artista}</h2>
-            <h2>Los compositores son: {cancion?.compositores}</h2>
-            <h2>Los likes son:</h2>
-            {
-                likes&&
-                <p>{likes}</p>
-            }
-            <br/>
-            <button onClick={() => navigate("/")}>Volver</button>
-            <button onClick={() => eliminarCancion()}>Eliminar Cancion</button>
-            <button className='btn btn-primary btn-lg' onClick={handleClick} disabled={buttonState}>LIKE</button>
+        <div className='container-detail'>
+            <div className='container-detail-top'>
+                <h2>Pet Shelter</h2>
+                {<Button className="logout-button" variant="link" onClick={backToHome}>back to home</Button>}
+            </div>
+            <div className='container-detail-medium'>
+                <h4>Detail about : {pet?.nombre}</h4>
+                <button onClick={() => eliminarPet()}>Adopt {pet?.nombre}</button>
+            </div>    
+            <div className='container-detail-bottom'>
+                <h4>Pet type : {pet?.tipo}</h4>
+                <h4>Description: {pet?.descripcion}</h4>
+                <h4>Skills: {pet?.skills}</h4>
+                <div className='likes'>
+                <button className='btn-likes' onClick={handleClick} disabled={buttonState}>Like {pet?.nombre}</button>
+                {
+                    likes&&
+                    <p>{likes}</p>
+                }
+                <h5>like(s)</h5>
+                
+                
+                </div>                
+            </div>
+            
         </div>
     );
 }
