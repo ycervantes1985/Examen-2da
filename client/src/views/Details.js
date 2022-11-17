@@ -4,7 +4,7 @@ import {useParams,useNavigate,Link} from "react-router-dom"
 import { simpleGet } from '../services/simpleGet';
 import { simpleDelete } from '../services/simpleDelete';
 import { simpleUpdate } from '../services/simpleUpdate';
-import Button from 'react-bootstrap/Button';
+
 
 
 const Details = () => {
@@ -15,9 +15,7 @@ const Details = () => {
     const [likes, setLikes] = useState();
     const navigate = useNavigate()
 
-    const backToHome = () => {
-        navigate(`/`)
-    }
+
 
     const getPet = async() => {
         const response = await simpleGet("http://localhost:8000/api/pet/" + id)
@@ -54,10 +52,7 @@ const Details = () => {
 
     return (
         <div className='container-detail'>
-            <div className='container-detail-top'>
-                <h2>Pet Shelter</h2>
-                {<Button className="logout-button" variant="link" onClick={backToHome}>back to home</Button>}
-            </div>
+            
             <div className='container-detail-medium'>
                 <h4>Detail about : {pet?.nombre}</h4>
                 <button onClick={() => eliminarPet()}>Adopt {pet?.nombre}</button>

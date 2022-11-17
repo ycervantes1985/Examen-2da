@@ -20,10 +20,7 @@ const Main = () => {
 
     return (
         <div className='container'>
-            <div className='sub-container-top'>
-                <Link to={`/crear-pet/`}>add a pet to the shelter</Link>
-                <h2>Pet Shelter</h2>                
-            </div>
+            
             <div className='sub-container-bottom'>
             <h4>These pets are looking for a good home</h4>         
             <Table striped bordered hover>

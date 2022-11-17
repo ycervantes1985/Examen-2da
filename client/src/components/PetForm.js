@@ -7,11 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const PetForm = (props) => {
     const { nombre, tipo, descripcion, skill1, skill2, skill3, onSubmitProp, action } = props
-    const navigate = useNavigate();
-    const backToHome = () => {
-        navigate(`/`)
-    }
-
+    
     return (
         <div>
             <Formik
@@ -23,7 +19,7 @@ const PetForm = (props) => {
                     skill2: skill2,
                     skill3: skill3,
                 }}
-                /* validationSchema={Yup.object().shape({
+                 validationSchema={Yup.object().shape({
                     nombre: Yup.string()
                         .min(3,"El nombre es muy corto")
                         .required("Por favor ingrese el nombre de la cancion"),
@@ -37,7 +33,7 @@ const PetForm = (props) => {
                     skill2: Yup.string(),
                     skill3: Yup.string()
 
-                })} */
+                })}
                 onSubmit={(values, { setSubmitting }) => {
                     console.log("info del formik", values);
                     onSubmitProp(values);
@@ -45,10 +41,7 @@ const PetForm = (props) => {
             >
                 {({ errors, touched, handleSubmit }) => {
                     return (<div className='container-form'>
-                        <div className='container-form-top'>
-                            <h2>Pet Shelter</h2>
-                            {<Button className="logout-button" variant="link" onClick={backToHome}>back to home</Button>}
-                        </div>
+                        
                         <div className='container-form-bottom'>
                         <h4>Know a pet needing a home?</h4>
                         <Form>
